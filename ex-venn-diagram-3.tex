@@ -1,0 +1,49 @@
+\documentclass{standalone}
+  \usepackage{tikz}
+  \usetikzlibrary{fit}
+
+  \def\firstcircle{(90:1.75cm) circle (2.5cm)}
+  \def\secondcircle{(210:1.75cm) circle (2.5cm)}
+  \def\thirdcircle{(330:1.75cm) circle (2.5cm)}
+
+  \begin{document}
+    \begin{tikzpicture}
+      \begin{scope}
+        \fill[cyan, even odd rule] \firstcircle \secondcircle \thirdcircle;
+      \end{scope}
+     
+      % Circles
+      \begin{scope}[local bounding box = andScope]
+        % Swim
+        \draw \firstcircle node[text=black, above, yshift=2.5cm] {$S$} node[text=black, above] {$3$};  
+
+        % Run
+        \draw \secondcircle node [text=black, below left, xshift=-2.5cm] {$R$} node [text=black, below left, xshift=-0.5cm] {$15$};  
+
+        % Cycle
+        \draw \thirdcircle node [text=black,below right, xshift=2.5cm] {$C$} node [text=black, below left, xshift=1.5cm] {$20$};
+       
+        % SC
+        \draw node[text=black, above right, xshift=1cm] {$5$};
+
+        % RS
+        \draw node[text=black, above left, xshift=-1cm] {$15$};
+
+        % RC
+        \draw node[text=black, below, yshift=-1.5cm] {$10$};
+
+        % RSC
+        \draw node[text=black] {$25$};
+
+        % U
+        \node at (andScope.north) [xshift=3.5cm] {$|U|=100$};
+      \end{scope}
+
+      % U
+      \node at (andScope.north) [above, yshift=2] {$U$};      
+
+      % Box
+      \node[fit=(andScope), draw] {};
+
+    \end{tikzpicture}
+  \end{document}
